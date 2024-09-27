@@ -1,0 +1,67 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql" // or "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id             String             @id @default(uuid()) 
+  username       String             @unique
+  email          String             @unique
+  password       String
+  teamsOwned     Team[]             @relation("TeamOwner")
+  teamMembership TeamMember[]
+  tournaments    Tournament[]      @relation("HostedTournaments")
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+}
+
+model Team {
+  id                 String            @id @default(uuid())
+  name               String            @unique
+  owner              User              @relation("TeamOwner", fields: [ownerId], references: [id])
+  ownerId            String
+  members            TeamMember[]
+  tournamentEntries  TournamentTeam[]
+
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+}
+
+model TeamMember {
+  id        String   @id @default(uuid())
+  team      Team     @relation(fields: [teamId], references: [id])
+  teamId    String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  joinedAt  DateTime @default(now())
+
+  @@unique([teamId, userId])
+}
+
+model Tournament {
+  id             String           @id @default(uuid())
+  host           User             @relation("HostedTournaments", fields: [hostId], references: [id])
+  hostId         String
+  name           String
+  description    String
+  startDate      DateTime
+  endDate        DateTime
+  entries        TournamentTeam[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+}
+
+model TournamentTeam {
+  id            String      @id @default(uuid())
+  tournament    Tournament  @relation(fields: [tournamentId], references: [id])
+  tournamentId  String
+  team          Team        @relation(fields: [teamId], references: [id])
+  teamId        String
+  registeredAt  DateTime    @default(now())
+}
