@@ -6,11 +6,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import { valologo } from "../../public/valologo.png"
 
 export default function Navbar() {
     const pathname = usePathname();
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const links = [
         { href: "/", label: "Home" },
@@ -26,20 +26,20 @@ export default function Navbar() {
             Sign Out
         </button>
     ) : (
-        <>
-            <Link
-                href="/signin"
-                className={`px-3 py-2 rounded-md text-sm font-medium ${pathname === "/signin"
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-300 hover:bg-gray-800 hover:text-[#ff4655]"
-                    }`}
-            >
-                Sign In
-            </Link>
-        </>
+        <Link
+            href="/signin"
+            className={`px-3 py-2 rounded-md text-sm font-medium ${pathname === "/signin"
+                ? "bg-gray-900 text-white"
+                : "text-gray-300 hover:bg-gray-800 hover:text-[#ff4655]"
+                }`}
+        >
+            Sign In
+        </Link>
     );
 
-
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
 
     return (
         <nav className="bg-[#0f1923]">
@@ -56,8 +56,20 @@ export default function Navbar() {
                             />
                         </Link>
                         <Link href="/" className="text-[#ff4655] text-2xl font-extrabold tracking-widest">
-                            VALORANT TOURNAMENT
+                            VALOARENA
                         </Link>
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <div className="flex md:hidden">
+                        <button
+                            onClick={toggleMobileMenu}
+                            className="text-gray-300 hover:text-white focus:outline-none"
+                        >
+                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+                            </svg>
+                        </button>
                     </div>
 
                     {/* Desktop Menu */}
@@ -75,12 +87,33 @@ export default function Navbar() {
                                     {link.label}
                                 </Link>
                             ))}
-
                             {/* Authentication Links */}
                             {authLinks}
                         </div>
                     </div>
                 </div>
+
+                {/* Mobile Menu */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden">
+                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                            {links.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={`block px-3 py-2 rounded-md text-base font-medium ${pathname === link.href
+                                        ? "bg-[#ff4655] text-white"
+                                        : "text-gray-300 hover:bg-[#ff4655] hover:text-white"
+                                        }`}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                            {/* Authentication Links for Mobile */}
+                            {authLinks}
+                        </div>
+                    </div>
+                )}
             </div>
         </nav>
     );
