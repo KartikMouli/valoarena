@@ -52,11 +52,11 @@ export default function Navbar() {
                             <img
                                 src="/valologo.png"
                                 alt="Logo"
-                                className="h-11 w-13 mr-2" // Adjust height and width of the logo
+                                className="h-11 w-15 mr-2" // Adjust height and width of the logo
                             />
                         </Link>
                         <Link href="/" className="text-[#ff4655] text-2xl font-extrabold tracking-widest">
-                            VALOARENA
+                            VALORANT TOURNAMENT
                         </Link>
                     </div>
 
