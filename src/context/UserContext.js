@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        // console.log('Session data:', session); // Check what is being returned
+        // console.log('Session data:', session); 
         if (session) {
             setUser(session.user);
             setIsAuthenticated(true);
