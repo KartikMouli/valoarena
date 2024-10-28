@@ -82,18 +82,16 @@ const Home = () => {
             <div className="py-12 bg-black">
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-4xl font-bold">Tournament Highlights</h2>
-                    <div className="mt-8 flex align-center justify-center gap-5">
+                    <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 p-4 gap-5">
                         <iframe
-                            width="560"
-                            height="315"
+                            className='w-full h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96'
                             src="https://www.youtube.com/embed/U6KBa0W1GMQ?si=FPvsdhU8Mc_r4DmZ"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
                         ></iframe>
                         <iframe
-                            width="560"
-                            height="315"
+                            className='w-full h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96'
                             src="https://www.youtube.com/embed/zufMUTl-hu4?si=lU7yCxI-Z0S89xxv"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerPolicy="strict-origin-when-cross-origin"

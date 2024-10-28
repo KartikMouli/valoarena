@@ -37,6 +37,28 @@ export default function Navbar() {
         </Link>
     );
 
+    const authLinks_mobile = session ? (
+        <button
+            onClick={() => signOut({ callbackUrl: "/" })}
+            className={`block w-full text-center px-3 py-2 rounded-md text-base font-medium ${pathname === '/signout'
+                ? "bg-[#ff4655] text-white"
+                : "text-gray-300 hover:bg-[#ff4655] hover:text-white"
+                }`}
+        >
+            Sign Out
+        </button>
+    ) : (
+        <Link
+            href="/signin"
+            className={`block w-full text-center px-3 py-2 rounded-md text-base font-medium ${pathname === '/signin'
+                ? "bg-[#ff4655] text-white"
+                : "text-gray-300 hover:bg-[#ff4655] hover:text-white"
+                }`}
+        >
+            Sign In
+        </Link>
+    );
+
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
@@ -47,12 +69,11 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo or Brand Name */}
                     <div className="flex items-center">
-                        {/* Logo Image */}
                         <Link href="/">
                             <img
                                 src="/valologo.png"
                                 alt="Logo"
-                                className="h-11 w-15 mr-2" // Adjust height and width of the logo
+                                className="h-11 w-15 mr-2"
                             />
                         </Link>
                         <Link href="/" className="text-[#ff4655] text-2xl font-extrabold tracking-widest">
@@ -73,35 +94,32 @@ export default function Navbar() {
                     </div>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:block">
-                        <div className="ml-10 flex items-baseline space-x-6">
-                            {links.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className={`px-4 py-2 rounded-md text-sm font-semibold ${pathname === link.href
-                                        ? "bg-[#ff4655] text-white"
-                                        : "text-gray-300 hover:bg-[#ff4655] hover:text-white transition-colors duration-300"
-                                        }`}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                            {/* Authentication Links */}
-                            {authLinks}
-                        </div>
+                    <div className="hidden md:flex md:space-x-6">
+                        {links.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`px-4 py-2 rounded-md text-sm font-semibold ${pathname === link.href
+                                    ? "bg-[#ff4655] text-white"
+                                    : "text-gray-300 hover:bg-[#ff4655] hover:text-white transition-colors duration-300"
+                                    }`}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                        {authLinks}
                     </div>
                 </div>
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
-                    <div className="md:hidden">
-                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <div className="md:hidden w-full bg-[#0f1923]">
+                        <div className="space-y-1 px-4 pt-2 pb-3">
                             {links.map((link) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className={`block px-3 py-2 rounded-md text-base font-medium ${pathname === link.href
+                                    className={`block w-full text-center px-3 py-2 rounded-md text-base font-medium ${pathname === link.href
                                         ? "bg-[#ff4655] text-white"
                                         : "text-gray-300 hover:bg-[#ff4655] hover:text-white"
                                         }`}
@@ -109,8 +127,7 @@ export default function Navbar() {
                                     {link.label}
                                 </Link>
                             ))}
-                            {/* Authentication Links for Mobile */}
-                            {authLinks}
+                            {authLinks_mobile}
                         </div>
                     </div>
                 )}
