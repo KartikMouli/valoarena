@@ -140,7 +140,7 @@ const Home = () => {
                         className="text-center mb-12"
                     >
                         <h2 className="text-4xl font-bold mb-4">Upcoming Tournaments</h2>
-                        <p className="text-gray-400 text-lg">Don't miss out on the action!</p>
+                        <p className="text-gray-400 text-lg">Don&apos; miss out on the action!</p>
                     </motion.div>
 
                     {error && (
