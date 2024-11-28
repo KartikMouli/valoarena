@@ -32,7 +32,7 @@ export default function TournamentsPage() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gray-900 py-10 px-4">
+        <div className="min-h-screen bg-background py-10 px-4">
             <div className="max-w-5xl mx-auto bg-gray-800 rounded-lg shadow-lg p-8">
                 <h1 className="text-5xl font-bold text-center mb-10 bg-gradient-to-r from-pink-600 via-red-500 to-yellow-500 bg-clip-text text-transparent">
                     Valorant Tournaments

@@ -55,7 +55,7 @@ export default function TeamsPage() {
     const userId = session?.user?.id;
 
     return (
-        <div className="min-h-screen bg-gray-900 text-white p-8">
+        <div className="min-h-screen bg-background text-white p-8">
             <div className="max-w-5xl mx-auto">
                 {/* Page Title */}
                 <h1 className="text-4xl font-bold text-center mb-10 bg-gradient-to-r from-pink-600 via-red-500 to-yellow-500 bg-clip-text text-transparent">

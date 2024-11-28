@@ -1,7 +1,5 @@
-// src/app/signin/page.jsx
-
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -10,6 +8,7 @@ export default function SignIn() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const router = useRouter();
+
 
     const handleSignin = async (e) => {
         e.preventDefault();
@@ -33,8 +32,15 @@ export default function SignIn() {
         }
     };
 
+    const handleDemoSignIn = () => {
+        setEmail("demo@abc.com");
+        setPassword("demo")
+        
+        
+    };
+
     return (
-        <div className="max-w-md mx-auto mt-10 p-8 bg-[#0f1923] rounded-lg shadow-lg border border-[#ff4655] mb-5">
+        <div className="max-w-md mx-auto mt-20 p-8 bg-[#0f1923] rounded-lg shadow-lg border border-[#ff4655] mb-32">
             <h1 className="text-3xl font-bold text-white mb-6 text-center">Sign In</h1>
             {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
             <form onSubmit={handleSignin} className="flex flex-col space-y-6">
@@ -59,6 +65,13 @@ export default function SignIn() {
                     className="bg-[#ff4655] hover:bg-gray-800 text-white py-2 rounded transition duration-300 font-semibold"
                 >
                     Sign In
+                </button>
+                <button
+                    type="button"
+                    onClick={handleDemoSignIn}
+                    className="bg-gray-800 hover:bg-[#ff4655] text-white py-2 rounded transition duration-300 font-semibold mt-4"
+                >
+                    Demo Sign In
                 </button>
                 <p className="text-center text-gray-400 mt-4">
                     Don&apos;t have an account?

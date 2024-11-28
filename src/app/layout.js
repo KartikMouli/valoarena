@@ -9,17 +9,22 @@ import { UserProvider } from "@context/UserContext";
 import Footer from '@components/Footer';
 
 
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+
+    <html lang="en" suppressHydrationWarning>
       <body>
         <SessionProvider>
           <UserProvider>
-            <Navbar />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
+
+            <div className="min-h-screen bg-background">
+              <Navbar />
+              <main className="pt-16 flex-grow">{children}</main>
+              <Footer />
+            </div>
+
+
           </UserProvider>
         </SessionProvider>
       </body>

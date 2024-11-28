@@ -31,7 +31,7 @@ export default function Signup() {
     };
 
     return (
-        <div className="max-w-md mx-auto mt-10 p-8 bg-[#0f1923] rounded-lg shadow-lg border border-[#ff4655] mb-5">
+        <div className="max-w-md mx-auto mt-20 p-8 bg-[#0f1923] rounded-lg shadow-lg border border-[#ff4655] mb-36">
             <h1 className="text-3xl font-bold text-white mb-6 text-center">Sign Up</h1>
             {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
             <form onSubmit={handleSignup} className="flex flex-col space-y-6">
